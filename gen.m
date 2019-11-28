@@ -1,4 +1,4 @@
-function [u,x,y] = gen()
+function [u,x,y] = gen(left_is_corr)
 
     % super simple reversal learning
     %
@@ -8,35 +8,11 @@ function [u,x,y] = gen()
     %
     % run it generatively
 
-    left_is_corr = [1 1 1 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 0 0 0 0 0 0]; 
-    prob = 0.8;
 
 
     [x,y,u] = sim(left_is_corr);
 end
 
-
-
-function x = update(x, u) % draw from fn(xn|xn-1) = p(xn | xn-1, un)
-    if u == 0
-        if rand < 0.8
-            x = 1 - x;
-        end
-    end
-end
-
-function y = resp(x, u) % draw from gn(yn|xn)
-    if rand < 0.8
-        y = x;
-    else
-        y = 1 - x;
-    end
-end
-
-function p = response_prob(y, x, u) % gn(yn|xn) = p(yn|xn,un)
-    p(y == x) = 0.8;
-    p(y ~= x) = 0.2;
-end
 
 
 function [x,y,u] = sim(left_is_corr)
@@ -59,4 +35,6 @@ function [x,y,u] = sim(left_is_corr)
         % update belief (subj)
         x(n) = update(x(n-1), u(n));
     end
+
+    y(n) = resp(x(n), u(n));
 end
