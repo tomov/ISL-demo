@@ -1,10 +1,10 @@
-function [X,W,Xbar,Xold] = filt(u,y)
+function [X,W,Xbar,Xold] = filt(u,y, N)
 
     % particle filter for super simple reversal learning
     % see Doucet et al. 2012
     %
 
-    N = 1000;
+    N = 10;
 
     X(:,1) = rand(N,1) < 0.5; % q(x1|y1) = prior for x
 

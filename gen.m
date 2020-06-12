@@ -9,13 +9,6 @@ function [u,x,y] = gen(left_is_corr)
     % run it generatively
 
 
-
-    [x,y,u] = sim(left_is_corr);
-end
-
-
-
-function [x,y,u] = sim(left_is_corr)
     x = nan(size(left_is_corr));
     u = nan(size(left_is_corr));
     y = nan(size(left_is_corr));

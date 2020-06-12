@@ -1,4 +1,4 @@
-function [Xold,Wb,X,W,Xbar] = smooth(u,y)
+function [Xold,Wb,X,W,Xbar] = smooth(u,y, N)
 
     % particle filter for super simple reversal learning
     % see Doucet et al. 2012 
@@ -8,7 +8,7 @@ function [Xold,Wb,X,W,Xbar] = smooth(u,y)
     %
 
     % forward filtering part
-    [X,W,Xbar,Xold] = filt(u,y);
+    [X,W,Xbar,Xold] = filt(u,y, N);
     N = size(X,1);
 
     n = length(u);
